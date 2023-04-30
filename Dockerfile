@@ -139,6 +139,9 @@ RUN mkdir -p ~/.local/share/fonts
 RUN cp ~/Downloads/DroidSansMono/*.otf ~/.local/share/fonts
 RUN fc-cache -fv
 
+# Configure Zsh data folder
+RUN echo "HISTFILE=${ZDOTDIR:-$HOME}/workspace/config/.zsh_history" >> ~/.zshrc
+
 RUN rm -rf ~/Downloads
 
 ENTRYPOINT [ "/bin/zsh" ]
