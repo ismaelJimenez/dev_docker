@@ -7,6 +7,7 @@ if [ ! "$(docker ps -a -q -f name=$dockerId)" ]; then
     --name $dockerId \
     -u $dockerId \
     -v ~/Documents/Workspace:/home/dev/workspace \
+    -p 3000:3000 \
     $dockerId
 else
   if [ "$(docker ps -aq -f status=exited -f name=$dockerId)" ]; then

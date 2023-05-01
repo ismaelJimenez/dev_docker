@@ -262,4 +262,8 @@ RUN python3 -m pip install --user --upgrade pynvim
 
 RUN rm -rf ~/Downloads
 
+# For NextJs
+EXPOSE 3000
+ENV PORT 3000
+
 ENTRYPOINT [ "/bin/zsh" ]
