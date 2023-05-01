@@ -114,6 +114,7 @@ RUN set -eux; \
     rustc --version;
 
 RUN npm install -g neovim
+RUN npm install -g tree-sitter-cli
 
 # Install Python 3.10
 # ensure local python is preferred over distribution python
