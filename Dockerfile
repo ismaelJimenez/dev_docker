@@ -221,15 +221,15 @@ RUN set -eux; \
 	\
 	pip --version
 
+# Install Lunarvim
+RUN  LV_BRANCH='release-1.3/neovim-0.9' su -c "bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/release-1.3/neovim-0.9/utils/installer/install.sh)" dev
+
 # Set locale
 ENV LANG C.UTF-8
 ENV TERM xterm-256color
 
 USER dev
 WORKDIR /home/dev
-
-# Install Lunarvim
-RUN  LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/release-1.3/neovim-0.9/utils/installer/install.sh)
 
 # Configure Zsh & Tmux
 RUN git clone https://github.com/ismaelJimenez/.dotfiles.git \
