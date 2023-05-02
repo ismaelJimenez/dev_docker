@@ -85,6 +85,8 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && npm --version
 
 RUN npm install -g yarn
+RUN npm install -g neovim
+RUN npm install -g tree-sitter-cli
 
 # Install Rust - From https://github.com/rust-lang/docker-rust/blob/master/1.68.2/bullseye/Dockerfile
 
@@ -112,9 +114,6 @@ RUN set -eux; \
     rustup --version; \
     cargo --version; \
     rustc --version;
-
-RUN npm install -g neovim
-RUN npm install -g tree-sitter-cli
 
 # Install Python 3.10
 # ensure local python is preferred over distribution python
@@ -222,15 +221,15 @@ RUN set -eux; \
 	\
 	pip --version
 
-# Install Lunarvim
-RUN  LV_BRANCH='release-1.3/neovim-0.9' su -c "bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/release-1.3/neovim-0.9/utils/installer/install.sh)" dev
-
 # Set locale
 ENV LANG C.UTF-8
 ENV TERM xterm-256color
 
 USER dev
 WORKDIR /home/dev
+
+# Install Lunarvim
+RUN  LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/release-1.3/neovim-0.9/utils/installer/install.sh)
 
 # Configure Zsh & Tmux
 RUN git clone https://github.com/ismaelJimenez/.dotfiles.git \
